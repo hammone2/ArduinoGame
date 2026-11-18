@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
@@ -96,6 +97,13 @@ public class CarController : MonoBehaviour
 
     void GetInputs()
     {
+        if (arduinoInput != null && Input.GetKeyDown(KeyCode.T))
+        {
+            arduinoInputEnabled = !arduinoInputEnabled;
+
+            Debug.Log($"Arduino input {(arduinoInputEnabled ? "enabled" : "disabled")}");
+        }
+
         if (!arduinoInputEnabled)
         {
             Vector2 input = inputActions.Player.Move.ReadValue<Vector2>();
@@ -107,7 +115,7 @@ public class CarController : MonoBehaviour
         moveInput = arduinoInput.Speed;
         steerInput = arduinoInput.Steering * arduinoInput.steeringMultiplier * -1;
 
-        Debug.Log($"Arduino Input - Speed: {arduinoInput.Speed}, Steering: {arduinoInput.Speed}");
+        Debug.Log($"Arduino Input - Speed: {arduinoInput.Speed}, Steering: {arduinoInput.Steering}");
     }
 
     void Move()

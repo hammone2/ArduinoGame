@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class TemporaryRestartScript : MonoBehaviour
+public class RestartGame : MonoBehaviour
 {
-    public void RestartGame()
+    public void Restart()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("StartScreen");
     }

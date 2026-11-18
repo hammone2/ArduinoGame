@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class CartSceneManager : MonoBehaviour
+public class CarSceneManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI killsText;
@@ -9,6 +9,20 @@ public class CartSceneManager : MonoBehaviour
     private float elapsedTime = 0f;
     private int kills = 0;
     private bool timerRunning = false;
+
+    public static CarSceneManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
